@@ -1,26 +1,174 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fcf8f8;
+  --foreground: #1c1b1b;
+
+  --surface: #ffffff;
+  --surface-soft: #f6f3f2;
+  --surface-muted: #ebe7e7;
+  --surface-strong: #e5e2e1;
+
+  --primary: #000101;
+  --secondary: #66587d;
+  --secondary-soft: #e5d2fe;
+  --secondary-muted: #cdc1e2;
+  --violet-deep: #4b425d;
+
+  --text-muted: #44474a;
+  --text-soft: #75777a;
+
+  --border-soft: rgba(117, 119, 122, 0.14);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-hanken), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: var(--font-newsreader), serif;
+}
+
+.premium-border {
+  border: 1px solid var(--border-soft);
+}
+
+.soft-glow {
+  box-shadow: 0 40px 100px -20px rgba(103, 89, 125, 0.16);
+}
+
+.deep-glow {
+  box-shadow:
+    0 40px 120px -40px rgba(102, 88, 125, 0.32),
+    0 12px 40px -20px rgba(0, 0, 0, 0.22);
+}
+
+.hero-orb {
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(229, 210, 254, 0.8),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 70% 70%,
+      rgba(102, 88, 125, 0.35),
+      transparent 46%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.75),
+      rgba(229, 210, 254, 0.18)
+    );
+}
+
+.mauve-glow {
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(229, 210, 254, 0.22) 0%,
+    transparent 70%
+  );
+}
+
+.cta-gradient {
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(229, 210, 254, 0.18),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(102, 88, 125, 0.22),
+      transparent 42%
+    );
+}
+
+.grid-mask {
+  background-image:
+    linear-gradient(rgba(102, 88, 125, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(102, 88, 125, 0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at center, black, transparent 72%);
+}
+
+/* Decorative floating orbs */
+.floating-orb {
+  animation: float-orb 6s ease-in-out infinite;
+}
+
+.floating-orb-delayed {
+  animation: float-orb 8s ease-in-out infinite;
+  animation-delay: 1.4s;
+}
+
+/* Premium floating effect without rotation */
+.floating-panel {
+  animation: float-panel 7s ease-in-out infinite;
+}
+
+/* Growth Loop animated dot */
+.loop-orbit {
+  animation: loopOrbit 10s linear infinite;
+}
+
+@keyframes float-panel {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes float-orb {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(4px, -8px, 0) scale(1.02);
+  }
+}
+
+@keyframes loopOrbit {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes orbitAround {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes orbitSpin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.orbit-path-spin {
+  animation: orbitSpin 14s linear infinite;
 }
